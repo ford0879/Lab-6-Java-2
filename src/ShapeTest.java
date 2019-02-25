@@ -48,6 +48,10 @@ public class ShapeTest
 	public void TriangleTest()
 	{
 		// TODO: complete this...
+		Shape tri = new EquilateralTriangle("Triangle", 3.0);
+		Assert.assertEquals("Triangle area incorrect.", 3.0*3.0*Math.sqrt(3)/4, tri.getArea(), 0.0001);
+		Assert.assertEquals("Triangle type incorrect.", "EquilateralTriangle", tri.getShapeType());
+		Assert.assertEquals("Shape ID incorrect.", "Triangle", tri.getId());
 	}
 
 	/**
