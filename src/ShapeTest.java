@@ -61,6 +61,10 @@ public class ShapeTest
 	public void TrapezoidTest()
 	{
 		// TODO: complete this...
+		Shape trap = new Trapezoid("Trapezoid", 20.0, 15.0,  30.0, 55.0);
+		Assert.assertEquals("Trapezoid area incorrect.", 510, trap.getArea(), 0.0001);
+		Assert.assertEquals("Trapezoid type incorrect.", "Trapezoid", trap.getShapeType());
+		Assert.assertEquals("Shape ID incorrect.", "Trapezoid", trap.getId());
 	}
 
 	/**
