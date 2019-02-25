@@ -18,6 +18,10 @@ public class Rectangle extends Polygon {
 		super(id);
 		this.height = height;
 		this.width = width;
+		super.sideLengths.add(height);
+		super.sideLengths.add(height);
+		super.sideLengths.add(width);
+		super.sideLengths.add(width);
 		
 	}
 
