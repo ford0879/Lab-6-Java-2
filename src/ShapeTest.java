@@ -111,6 +111,9 @@ public class ShapeTest
 	public void ShapeToStringTest()
 	{
 		// TODO: complete this...
+		String expectedString = "Rectangle ID = rect area = 9.000 perimeter = 12.000";
+        Shape rect = new Rectangle("rect", 3.0, 3.0);
+        Assert.assertEquals(expectedString, rect.toString());
 	}
 
 	//==================================================================================================================
@@ -149,6 +152,24 @@ public class ShapeTest
 	public void ComparePerimeterTest()
 	{
 		// TODO: complete this...
+		 // Test equals:
+		Shape rect = new Rectangle("R1", 3.0,3.0);
+		Shape sqr = new Square("S1", 3.0);
+		ShapePerimeterComparator sc = new ShapePerimeterComparator();
+		Assert.assertEquals("ShapePerimeterComparator should find shapes equal.", 0, sc.compare(rect, sqr));
+		Assert.assertTrue("ShapePerimeterComparator should find shapes equal.", sc.equals(rect, sqr));
+
+		// Test equal perimeter, different area:
+        Shape rect2 = new Rectangle("R2", 1.0, 9.0);
+        Shape sqr2 = new Square("S2", 6.0);
+        Assert.assertEquals("ShapePerimeterComparator gave incorrect ordering.", -1, sc.compare(rect2, sqr2));
+        Assert.assertEquals("ShapePerimeterComparator gave incorrect ordering.", 1, sc.compare(sqr2, rect2));
+        Assert.assertFalse("ShapePerimeterComparator incorrectly finds shapes equal.", sc.equals(rect2, sqr2));
+
+        // Test unequal perimeter and area:
+        Assert.assertEquals("ShapePerimeterComparator gave incorrect ordering.", 1, sc.compare(sqr2, rect));
+        Assert.assertEquals("ShapePerimeterComparator gave incorrect ordering.", -1, sc.compare(rect, sqr2));
+        Assert.assertFalse("ShapePerimeterComparator incorrectly finds shapes equal.", sc.equals(sqr2, rect));
 	}
 
 	/**
@@ -158,5 +179,22 @@ public class ShapeTest
     public void NaturalCompareTest()
     {
 		// TODO: complete this...
+		 // Test equals:
+		Shape rect = new Rectangle("R1", 3.0,3.0);
+		Shape sqr = new Square("S1", 3.0);
+		Assert.assertEquals("compareTo should find shapes equal.", 0, sqr.compareTo(rect));
+
+		// Test equal perimeter, different area:
+       Shape rect2 = new Rectangle("R2", 1.0, 9.0);
+       Shape sqr2 = new Square("S2", 6.0);
+       Assert.assertEquals("compareTo gave incorrect ordering.", 1, sqr2.compareTo(rect2));
+       Assert.assertEquals("compareTo gave incorrect ordering.", -1, rect2.compareTo(sqr2));
+
+       // Test equal area and unequal perimeter:
+       Shape rect3 = new Rectangle("R2", 1.0, 9.0);
+       Shape sqr3 = new Square("S2", 3.0);
+       Assert.assertEquals("compareTo gave incorrect ordering.", -1, sqr3.compareTo(rect3));
+       Assert.assertEquals("compareTo gave incorrect ordering.", 1, rect3.compareTo(sqr3));
+		
     }
 }
